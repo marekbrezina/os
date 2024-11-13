@@ -36,7 +36,6 @@ lists:
 
   community-maintained-headless: &community-maintained-headless
     # auto generated section
-    - { BOARD: bananapir2, BRANCH: current }
     - { BOARD: clearfogbase, BRANCH: current }
     - { BOARD: clearfogpro, BRANCH: current }
     - { BOARD: cubieboard, BRANCH: current }
@@ -63,7 +62,6 @@ lists:
     - { BOARD: orangepi-r1, BRANCH: current }
     - { BOARD: orangepi-r1plus-lts, BRANCH: current }
     - { BOARD: orangepi-r1plus, BRANCH: current }
-    - { BOARD: orangepizero, BRANCH: current }
     - { BOARD: orangepizeroplus2-h5, BRANCH: current }
     - { BOARD: pinecube, BRANCH: current }
     - { BOARD: sakurapi-rk3308b, BRANCH: current }
@@ -76,16 +74,21 @@ lists:
     - { BOARD: aml-t95z-plus, BRANCH: edge }
     - { BOARD: armsom-aim7-io, BRANCH: vendor }
     - { BOARD: armsom-cm5-io, BRANCH: vendor }
+    - { BOARD: armsom-cm5-rpi-cm4-io, BRANCH: vendor }
     - { BOARD: armsom-sige1, BRANCH: vendor }
     - { BOARD: armsom-sige3, BRANCH: vendor }
     - { BOARD: armsom-sige5, BRANCH: vendor }
     - { BOARD: armsom-sige7, BRANCH: current, ENABLE_EXTENSIONS: "mesa-vpu" }
     - { BOARD: armsom-w3, BRANCH: vendor, ENABLE_EXTENSIONS: "v4l2loopback-dkms,mesa-vpu" }
+    - { BOARD: avaota-a1, BRANCH: legacy }
     - { BOARD: bananapim64, BRANCH: current }
     - { BOARD: bananapir2pro, BRANCH: current }
     - { BOARD: cherryba-m1, BRANCH: current }
     - { BOARD: clockworkpi-a06, BRANCH: current }
+    - { BOARD: cm3588-nas, BRANCH: current, ENABLE_EXTENSIONS: "mesa-vpu" }
     - { BOARD: coolpi-cm5, BRANCH: edge }
+    - { BOARD: core3566, BRANCH: vendor }
+    - { BOARD: cyber-aib-rk3588, BRANCH: vendor }
     - { BOARD: fine3399, BRANCH: current }
     - { BOARD: firefly-itx-3588j, BRANCH: vendor, ENABLE_EXTENSIONS: "v4l2loopback-dkms,mesa-vpu" }
     - { BOARD: firefly-rk3399, BRANCH: current }
@@ -107,13 +110,14 @@ lists:
     - { BOARD: lime-a64, BRANCH: current }
     - { BOARD: longanpi-4b, BRANCH: legacy }
     - { BOARD: lubancat2, BRANCH: edge }
+    - { BOARD: luckfox-core3566, BRANCH: vendor }
     - { BOARD: mangopi-m28k, BRANCH: vendor }
     - { BOARD: mekotronics-r58-minipc, BRANCH: vendor, ENABLE_EXTENSIONS: "v4l2loopback-dkms,mesa-vpu" }
     - { BOARD: mekotronics-r58x-4g, BRANCH: vendor, ENABLE_EXTENSIONS: "v4l2loopback-dkms,mesa-vpu" }
     - { BOARD: mekotronics-r58x-pro, BRANCH: vendor, ENABLE_EXTENSIONS: "v4l2loopback-dkms,mesa-vpu" }
     - { BOARD: mekotronics-r58x, BRANCH: vendor, ENABLE_EXTENSIONS: "v4l2loopback-dkms,mesa-vpu" }
     - { BOARD: mixtile-blade3, BRANCH: vendor, ENABLE_EXTENSIONS: "v4l2loopback-dkms,mesa-vpu" }
-    - { BOARD: nanopc-cm3588-nas, BRANCH: current, ENABLE_EXTENSIONS: "mesa-vpu" }
+    - { BOARD: mixtile-edge2, BRANCH: edge }
     - { BOARD: nanopct4, BRANCH: current, ENABLE_EXTENSIONS: "v4l2loopback-dkms,mesa-vpu" }
     - { BOARD: nanopi-r5c, BRANCH: current, ENABLE_EXTENSIONS: "mesa-vpu" }
     - { BOARD: nanopi-r5s, BRANCH: current, ENABLE_EXTENSIONS: "mesa-vpu" }
@@ -192,6 +196,7 @@ lists:
     - { BOARD: bananapim2zero, BRANCH: current }
     - { BOARD: bananapim3, BRANCH: current }
     - { BOARD: bananapipro, BRANCH: current }
+    - { BOARD: bananapir2, BRANCH: current }
     - { BOARD: beelinkx2, BRANCH: current }
     - { BOARD: cubieboard2, BRANCH: current }
     - { BOARD: cubieboard4, BRANCH: current }
@@ -207,6 +212,7 @@ lists:
     - { BOARD: orangepipcplus, BRANCH: current }
     - { BOARD: orangepiplus, BRANCH: current }
     - { BOARD: orangepiplus2e, BRANCH: legacy }
+    - { BOARD: orangepizero, BRANCH: current }
     - { BOARD: orangepizeroplus2-h3, BRANCH: current }
     - { BOARD: pcduino3, BRANCH: current }
     - { BOARD: rk322x-box, BRANCH: current }

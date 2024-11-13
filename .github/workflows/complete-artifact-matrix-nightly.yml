@@ -47,7 +47,7 @@ on:
         options:
         # branches
         - main
-        - v24.08
+        - v24.11
         default: 'main'
       board:
         type: choice
@@ -60,6 +60,7 @@ on:
         - aml-t95z-plus
         - armsom-aim7-io
         - armsom-cm5-io
+        - armsom-cm5-rpi-cm4-io
         - armsom-sige1
         - armsom-sige3
         - armsom-sige5
@@ -90,12 +91,15 @@ on:
         - clearfogbase
         - clearfogpro
         - clockworkpi-a06
+        - cm3588-nas
         - coolpi-cm5
+        - core3566
         - cubieboard
         - cubieboard2
         - cubieboard4
         - cubietruck
         - cubox-i
+        - cyber-aib-rk3588
         - fine3399
         - firefly-itx-3588j
         - firefly-rk3399
@@ -136,6 +140,7 @@ on:
         - lime2
         - longanpi-4b
         - lubancat2
+        - luckfox-core3566
         - macchiatobin-doubleshot
         - mangopi-m28k
         - mba8mpxl
@@ -148,10 +153,10 @@ on:
         - mixtile-blade3
         - mixtile-edge2
         - mk808c
-        - nanopc-cm3588-nas
         - nanopct4
         - nanopct6
         - nanopct6-lts
+        - nanopi-m6
         - nanopi-r1
         - nanopi-r1s-h5
         - nanopi-r2c
@@ -189,6 +194,7 @@ on:
         - olimex-teres-a64
         - olinux-som-a13
         - onecloud
+        - oneplus-kebab
         - orangepi-r1
         - orangepi-r1plus
         - orangepi-r1plus-lts
@@ -256,6 +262,7 @@ on:
         - rock-5-itx
         - rock-5a
         - rock-5b
+        - rock-5b-plus
         - rock-5c
         - rock-s0
         - rock64
@@ -326,6 +333,7 @@ on:
         - DylanHP
         - FantasyGmm
         - Heisath
+        - HeyMeco
         - IsMrX
         - Janmcha
         - JohnTheCoolingFan
@@ -357,6 +365,7 @@ on:
         - efectn
         - eliasbakken
         - engineer-80
+        - fridtjof
         - ginkage
         - glneo
         - hoochiwetech
@@ -371,6 +380,7 @@ on:
         - linhz0hz
         - mahdichi
         - mattx433
+        - mhawkins-consultant
         - monkaBlyat
         - paolosabatino
         - prahal
@@ -521,6 +531,17 @@ jobs:
           clean: false # true is default. it *will* delete the hosts /dev if mounted inside.
           path: documentation
 
+      # clone the armbian-config NG repo (`armbian/configng`)
+      - name: Checkout build repo
+        if: ${{ ( ! github.event.inputs.versionOverride ) && ( env.VERSION_BUMP == 'true' ) && ( inputs.ref == '' ) }}
+        uses: actions/checkout@v4
+        with:
+          repository: armbian/configng
+          ref: main
+          fetch-depth: 0
+          clean: false # true is default. it *will* delete the hosts /dev if mounted inside.
+          path: configng
+
       - name: Prepare Git_sources JSON
         if: ${{ ( ! github.event.inputs.versionOverride ) && ( env.VERSION_BUMP == 'true' ) && ( inputs.ref == '' ) }}
         run: |
@@ -535,6 +556,8 @@ jobs:
           DOCKER_ARMBIAN_BUILD=$(git rev-parse HEAD)
           cd ../rkbin
           RKBIN=$(git rev-parse HEAD)
+          cd ../configng
+          ARMBIANCONFIGNG=$(git rev-parse HEAD)
           cd ..
 
           # add build repository
@@ -545,6 +568,9 @@ jobs:
 
           # add rkbin repository
           sed -i '0,/{/s//{\n    "source": "https:\/\/github.com\/armbian\/rkbin",    \n    "branch": "master",     \n    "sha1": "'$RKBIN'"\n  },\n  &/' build/output/info/git_sources.json
+
+          # add armbianconfig repository
+          sed -i '0,/{/s//{\n    "source": "https:\/\/github.com\/armbian\/configng",    \n    "branch": "main",     \n    "sha1": "'$ARMBIANCONFIGNG'"\n  },\n  &/' build/output/info/git_sources.json
 
           # add docker-armbian-build repository
           sed -i '0,/{/s//{\n    "source": "https:\/\/github.com\/armbian\/docker-armbian-build",    \n    "branch": "main",     \n    "sha1": "'$DOCKER_ARMBIAN_BUILD'"\n  },\n  &/' build/output/info/git_sources.json
@@ -601,7 +627,7 @@ jobs:
       - name: Bump version
         if: ${{ ( ! github.event.inputs.versionOverride ) && ( inputs.ref == '' ) && ( env.VERSION_BUMP == 'true' ) }}
         id: changelog
-        uses: TriPSs/conventional-changelog-action@v5.3.0
+        uses: TriPSs/conventional-changelog-action@v5.4.0
         with:
           github-token: ${{ secrets.ACCESS_TOKEN_ARMBIANWORKER }}
           git-message: 'Bump release to {version}'

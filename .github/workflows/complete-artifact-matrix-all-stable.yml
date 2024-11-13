@@ -42,7 +42,7 @@ on:
         options:
         # branches
         - main
-        - v24.08
+        - v24.11
         default: 'main'
       board:
         type: choice
@@ -64,6 +64,7 @@ on:
         - DylanHP
         - FantasyGmm
         - Heisath
+        - HeyMeco
         - IsMrX
         - Janmcha
         - JohnTheCoolingFan
@@ -95,6 +96,7 @@ on:
         - efectn
         - eliasbakken
         - engineer-80
+        - fridtjof
         - ginkage
         - glneo
         - hoochiwetech
@@ -109,6 +111,7 @@ on:
         - linhz0hz
         - mahdichi
         - mattx433
+        - mhawkins-consultant
         - monkaBlyat
         - paolosabatino
         - prahal
@@ -259,6 +262,17 @@ jobs:
           clean: false # true is default. it *will* delete the hosts /dev if mounted inside.
           path: documentation
 
+      # clone the armbian-config NG repo (`armbian/configng`)
+      - name: Checkout build repo
+        if: ${{ ( ! github.event.inputs.versionOverride ) && ( env.VERSION_BUMP == 'true' ) && ( inputs.ref == '' ) }}
+        uses: actions/checkout@v4
+        with:
+          repository: armbian/configng
+          ref: main
+          fetch-depth: 0
+          clean: false # true is default. it *will* delete the hosts /dev if mounted inside.
+          path: configng
+
       - name: Prepare Git_sources JSON
         if: ${{ ( ! github.event.inputs.versionOverride ) && ( env.VERSION_BUMP == 'true' ) && ( inputs.ref == '' ) }}
         run: |
@@ -273,6 +287,8 @@ jobs:
           DOCKER_ARMBIAN_BUILD=$(git rev-parse HEAD)
           cd ../rkbin
           RKBIN=$(git rev-parse HEAD)
+          cd ../configng
+          ARMBIANCONFIGNG=$(git rev-parse HEAD)
           cd ..
 
           # add build repository
@@ -283,6 +299,9 @@ jobs:
 
           # add rkbin repository
           sed -i '0,/{/s//{\n    "source": "https:\/\/github.com\/armbian\/rkbin",    \n    "branch": "master",     \n    "sha1": "'$RKBIN'"\n  },\n  &/' build/output/info/git_sources.json
+
+          # add armbianconfig repository
+          sed -i '0,/{/s//{\n    "source": "https:\/\/github.com\/armbian\/configng",    \n    "branch": "main",     \n    "sha1": "'$ARMBIANCONFIGNG'"\n  },\n  &/' build/output/info/git_sources.json
 
           # add docker-armbian-build repository
           sed -i '0,/{/s//{\n    "source": "https:\/\/github.com\/armbian\/docker-armbian-build",    \n    "branch": "main",     \n    "sha1": "'$DOCKER_ARMBIAN_BUILD'"\n  },\n  &/' build/output/info/git_sources.json
@@ -339,7 +358,7 @@ jobs:
       - name: Bump version
         if: ${{ ( ! github.event.inputs.versionOverride ) && ( inputs.ref == '' ) && ( env.VERSION_BUMP == 'true' ) }}
         id: changelog
-        uses: TriPSs/conventional-changelog-action@v5.3.0
+        uses: TriPSs/conventional-changelog-action@v5.4.0
         with:
           github-token: ${{ secrets.ACCESS_TOKEN_ARMBIANWORKER }}
           git-message: 'Bump release to {version}'

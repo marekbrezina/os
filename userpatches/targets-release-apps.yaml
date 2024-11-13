@@ -37,6 +37,8 @@ lists:
     - { BOARD: odroidn2, BRANCH: current }
     - { BOARD: odroidn2l, BRANCH: current }
     - { BOARD: odroidm1, BRANCH: current }
+    - { BOARD: odroidc4, BRANCH: current }
+    - { BOARD: odroidhc4, BRANCH: current }
     - { BOARD: orangepizero2, BRANCH: current }
     - { BOARD: orangepizero2w, BRANCH: current }
     - { BOARD: orangepizero3, BRANCH: current }
@@ -79,8 +81,12 @@ lists:
     - { BOARD: lafrite, BRANCH: current }
     - { BOARD: lepotato, BRANCH: current }
     - { BOARD: nanopi-r6s, BRANCH: vendor }
+    - { BOARD: nanopct6, BRANCH: vendor }
+    - { BOARD: nanopct6-lts, BRANCH: vendor }
     - { BOARD: odroidm1, BRANCH: current }
     - { BOARD: odroidn2, BRANCH: current }
+    - { BOARD: odroidc4, BRANCH: current }
+    - { BOARD: odroidhc4, BRANCH: current }
     - { BOARD: odroidn2l, BRANCH: current }
     - { BOARD: orangepi4-lts, BRANCH: current }
     - { BOARD: orangepi5, BRANCH: vendor }
@@ -125,6 +131,8 @@ lists:
     - { BOARD: khadas-vim4, BRANCH: legacy, ENABLE_EXTENSIONS: "image-output-oowow,openhab"}
     - { BOARD: lafrite, BRANCH: current }
     - { BOARD: lepotato, BRANCH: current }
+    - { BOARD: odroidc4, BRANCH: current }
+    - { BOARD: odroidhc4, BRANCH: current }
     - { BOARD: odroidm1, BRANCH: current }
     - { BOARD: odroidn2, BRANCH: current }
     - { BOARD: odroidn2l, BRANCH: current }
@@ -154,16 +162,21 @@ lists:
     - { BOARD: khadas-vim3, BRANCH: current, ENABLE_EXTENSIONS: "image-output-oowow,omv" }
     - { BOARD: rock-5-itx, BRANCH: vendor }
     - { BOARD: odroidn2, BRANCH: current }
+    - { BOARD: odroidc4, BRANCH: current }
+    - { BOARD: odroidhc4, BRANCH: current }
     - { BOARD: odroidm1, BRANCH: current }
     - { BOARD: odroidxu4, BRANCH: current }
     - { BOARD: orangepi5, BRANCH: vendor }
     - { BOARD: orangepi5-plus, BRANCH: vendor }
     - { BOARD: onecloud, BRANCH: current }
+    - { BOARD: renegade, BRANCH: current }
+    - { BOARD: rock-5c, BRANCH: vendor }
     - { BOARD: rpi4b, BRANCH: current }
     - { BOARD: rpi5b, BRANCH: current }
     - { BOARD: nanopc-cm3588-nas, BRANCH: vendor }
     - { BOARD: nanopct4, BRANCH: current }
     - { BOARD: nanopct6, BRANCH: vendor }
+    - { BOARD: nanopct6-lts, BRANCH: vendor }
     - { BOARD: nanopi-r6c, BRANCH: vendor }
     - { BOARD: nanopi-r6s, BRANCH: vendor }
     - { BOARD: nanopi-r5c, BRANCH: vendor }
@@ -229,7 +242,7 @@ targets:
       gha: *armbian-gha
       build-image: "yes"
     vars:
-      RELEASE: trixie
+      RELEASE: sid
       BUILD_MINIMAL: "no"
       BUILD_DESKTOP: "no"
       ENABLE_EXTENSIONS: "kali"

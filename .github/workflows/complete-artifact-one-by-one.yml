@@ -58,6 +58,7 @@ on:
         - aml-s905d3-cc
         - armsom-aim7-io
         - armsom-cm5-io
+        - armsom-cm5-rpi-cm4-io
         - armsom-sige1
         - armsom-sige3
         - armsom-sige5
@@ -87,12 +88,15 @@ on:
         - clearfogbase
         - clearfogpro
         - clockworkpi-a06
+        - cm3588-nas
         - coolpi-cm5
+        - core3566
         - cubieboard
         - cubieboard2
         - cubieboard4
         - cubietruck
         - cubox-i
+        - cyber-aib-rk3588
         - fine3399
         - firefly-itx-3588j
         - firefly-rk3399
@@ -131,6 +135,7 @@ on:
         - lime2
         - longanpi-4b
         - lubancat2
+        - luckfox-core3566
         - macchiatobin-doubleshot
         - mangopi-m28k
         - mba8mpxl-ras314
@@ -143,10 +148,10 @@ on:
         - mixtile-blade3
         - mixtile-edge2
         - mk808c
-        - nanopc-cm3588-nas
         - nanopct4
         - nanopct6-lts
         - nanopct6
+        - nanopi-m6
         - nanopi-r1
         - nanopi-r1s-h5
         - nanopi-r2c
@@ -184,6 +189,7 @@ on:
         - olimex-teres-a64
         - olinux-som-a13
         - onecloud
+        - oneplus-kebab
         - orangepi-r1
         - orangepi-r1plus-lts
         - orangepi-r1plus
@@ -248,6 +254,7 @@ on:
         - rock-5-cmio
         - rock-5-itx
         - rock-5a
+        - rock-5b-plus
         - rock-5b
         - rock-5c
         - rock-s0
@@ -305,7 +312,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: armbian/build@v24.2.1
+      - uses: armbian/build@v24.8.1
         with:
           armbian_token:              "${{secrets.GITHUB_TOKEN}}"
           armbian_target:             "${{inputs.armbian_target}}"
